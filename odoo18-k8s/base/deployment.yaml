@@ -36,7 +36,7 @@ spec:
             - name: PGDATABASE
               value: "odoodb"
           command: ["odoo"]
-          args: ["-i", "base", "--db-filter=odoodb"]
+          args: ["-i", "base", "--db_host=postgres-service.postgres.svc.cluster.local", "--db_user=myuser", "--db_password=mypass", "--db_name=odoodb"]
           volumeMounts:
             - name: odoo-data
               mountPath: /var/lib/odoo
