@@ -34,7 +34,7 @@ spec:
             - "--db_host=postgres-service.postgres.svc.cluster.local"
             - "--db_user=myuser"
             - "--db_password=mypass"
-            - "--db_name=odoodb"
+            - "--db-filter=^odoodb$"
           volumeMounts:
             - name: odoo-data
               mountPath: /var/lib/odoo
