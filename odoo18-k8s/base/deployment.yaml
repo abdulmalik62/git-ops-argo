@@ -35,6 +35,8 @@ spec:
               value: "mypass"
             - name: PGDATABASE
               value: "mydb"
+              command: ["odoo"]
+              args: ["-i", "base", "--db_host=postgres-service.postgres.svc.cluster.local", "--db_user=myuser", "--db_password=mypass", "--db_name=mydb"]
           volumeMounts:
             - name: odoo-data
               mountPath: /var/lib/odoo
