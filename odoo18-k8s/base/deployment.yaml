@@ -31,6 +31,8 @@ spec:
           args:
             - "-i"
             - "base"
+            - "-d"
+            - "odoodb"
             - "--db_host=postgres-service.postgres.svc.cluster.local"
             - "--db_user=myuser"
             - "--db_password=mypass"
