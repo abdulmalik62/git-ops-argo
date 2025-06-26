@@ -20,11 +20,19 @@ spec:
             - containerPort: 8069
           env:
             - name: HOST
-              value: "localhost"
+              value: "postgres-service.postgres.svc.cluster.local"
             - name: USER
-              value: "odoo"
+              value: "myuser"
             - name: PASSWORD
-              value: "odoo"
+              value: "mypass"
+            - name: PGHOST
+              value: "postgres-service.postgres.svc.cluster.local"
+            - name: PGUSER
+              value: "myuser"
+            - name: PGPASSWORD
+              value: "mypass"
+            - name: PGDATABASE
+              value: "mydb"
           volumeMounts:
             - name: odoo-data
               mountPath: /var/lib/odoo
