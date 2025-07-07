@@ -1,0 +1,6 @@
+resources:
+  - namespace.yaml
+  - redis.yaml
+  - minio.yaml
+  - documenso-server.yaml
+  - documenso-web.yaml

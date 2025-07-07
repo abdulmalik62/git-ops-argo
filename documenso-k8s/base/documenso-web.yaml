@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documenso-web
+  namespace: documenso
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: documenso-web
+  template:
+    metadata:
+      labels:
+        app: documenso-web
+    spec:
+      containers:
+        - name: documenso-web
+          image: ghcr.io/documenso/web:latest
+          env:
+            - name: NEXT_PUBLIC_API_URL
+              value: "http://documenso.documenso:3000"
+          ports:
+            - containerPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: documenso-web
+  namespace: documenso
+spec:
+  selector:
+    app: documenso-web
+  ports:
+    - port: 3001
+      targetPort: 3001
