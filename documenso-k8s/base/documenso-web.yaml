@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: documenso-web
-          image: ghcr.io/documenso/web:latest
+          image: ghcr.io/documenso/documenso-web:latest
           env:
             - name: NEXT_PUBLIC_API_URL
               value: "http://documenso.documenso:3000"
