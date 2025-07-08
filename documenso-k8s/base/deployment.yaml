@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documenso
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: documenso
+  template:
+    metadata:
+      labels:
+        app: documenso
+    spec:
+      containers:
+        - name: documenso
+          image: ghcr.io/documenso/documenso:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: documenso-secrets
+                  key: DATABASE_URL
+            - name: STORAGE_DRIVER
+              value: "fs"  # fallback to local file storage (not recommended for prod)
+            - name: NODE_ENV
+              value: "production"
