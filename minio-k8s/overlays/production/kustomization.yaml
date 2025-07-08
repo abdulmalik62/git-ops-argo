@@ -1,2 +1,4 @@
+namespace: documenso
+
 resources:
   - ../../base
