@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: documenso
+  namespace: documenso
+  labels:
+    app: documenso
 spec:
   replicas: 1
   selector:
@@ -14,16 +17,41 @@ spec:
     spec:
       containers:
         - name: documenso
-          image: ghcr.io/documenso/documenso:latest
+          image: documenso/documenso:v1.12.1
           ports:
             - containerPort: 3000
           env:
-            - name: DATABASE_URL
+            - name: NEXTAUTH_SECRET
+              value: super-secret-key
+            - name: NEXTAUTH_URL
+              value: http://localhost:3000
+            - name: NEXT_PUBLIC_API_URL
+              value: http://localhost:3000
+            - name: NEXT_PUBLIC_WEBAPP_URL
+              value: http://localhost:3000
+            - name: NEXT_PUBLIC_MARKETING_URL
+              value: http://localhost:3000
+            - name: NEXT_PRIVATE_DATABASE_URL
+              value: postgres://postgres:postgres@postgres-service.postgres:5432/documenso
+            - name: NEXT_PRIVATE_DIRECT_DATABASE_URL
+              value: postgres://postgres:postgres@postgres-service.postgres:5432/documenso
+            - name: NEXT_PRIVATE_SMTP_FROM_NAME
+              value: Documenso
+            - name: NEXT_PRIVATE_SMTP_FROM_ADDRESS
+              value: no-reply@documenso.local
+            - name: NEXT_PRIVATE_S3_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: documenso-secrets
-                  key: DATABASE_URL
-            - name: STORAGE_DRIVER
-              value: "fs"  # fallback to local file storage (not recommended for prod)
-            - name: NODE_ENV
-              value: "production"
+                  name: minio-secret
+                  key: accesskey
+            - name: NEXT_PRIVATE_S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: secretkey
+            - name: NEXT_PRIVATE_S3_REGION
+              value: us-east-1
+            - name: NEXT_PRIVATE_S3_BUCKET
+              value: documenso
+            - name: NEXT_PRIVATE_S3_ENDPOINT
+              value: http://minio.documenso:9000
