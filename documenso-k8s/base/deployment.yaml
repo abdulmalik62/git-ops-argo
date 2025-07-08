@@ -32,9 +32,9 @@ spec:
             - name: NEXT_PUBLIC_MARKETING_URL
               value: http://localhost:3000
             - name: NEXT_PRIVATE_DATABASE_URL
-              value: postgresql://myuser:mypass@postgres-service.postgres.svc.cluster.local:5432/mydb
+              value: postgresql://myuser:mypass@postgres-service.postgres.svc.cluster.local:5432/documenso
             - name: NEXT_PRIVATE_DIRECT_DATABASE_URL
-              value: postgresql://myuser:mypass@postgres-service.postgres.svc.cluster.local:5432/mydb
+              value: postgresql://myuser:mypass@postgres-service.postgres.svc.cluster.local:5432/documenso
             - name: NEXT_PRIVATE_SMTP_FROM_NAME
               value: Documenso
             - name: NEXT_PRIVATE_SMTP_FROM_ADDRESS
