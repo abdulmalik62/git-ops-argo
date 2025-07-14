@@ -1,10 +1,5 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-namespace: neo4j
-
 resources:
-  - neo4j-namespace.yaml
+  - namespace.yaml
   - neo4j-config.yaml
   - neo4j-pvc.yaml
   - neo4j-deployment.yaml
