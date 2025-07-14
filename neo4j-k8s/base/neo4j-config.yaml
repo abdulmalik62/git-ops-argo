@@ -1,8 +1,8 @@
-# neo4j-config.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: neo4j-config
   namespace: neo4j
 data:
-  NEO4J_AUTH: neo4j/test123   # Format: neo4j/password
+  NEO4J_AUTH: "neo4j/admin@123"
+  NEO4J_server_config_strict__validation__enabled: "false"
